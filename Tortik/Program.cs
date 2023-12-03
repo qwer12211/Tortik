@@ -1,11 +1,10 @@
-﻿
 using System;
 using System.IO;
 public static class ArrowMenu
 {
     public static int ShowMenu(string[] options)
     {
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
@@ -13,38 +12,38 @@ public static class ArrowMenu
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + options.Length) % options.Length;
+                Vibor = (Vibor - 1 + options.Length) % options.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % options.Length;
+                Vibor = (Vibor + 1) % options.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                return nashChoice;
+                return Vibor;
             }
         }
     }
 }
-public class CakeOrder
+public class ZakazTorta
 {
-    private double totalPrice;
-    private string selectedCake;
-    private string orderInfo;
+    private double chena;
+    private string vibortortika;
+    private string infazakaz;
 
     public static int ShowSubMenu(string[] options)
     {
         return ArrowMenu.ShowMenu(options);
     }
-    public CakeOrder()
+    public ZakazTorta()
     {
-        totalPrice = 0;
-        selectedCake = "";
-        orderInfo = "";
+        chena = 0;
+        vibortortika = "";
+        infazakaz = "";
     }
     public void PlaceOrder()
     {
-        int nashChoice = 0;
+        int Vibor = 0;
         string[] options = { "Форма торта", "Размер торта", "Вкус коржей", "Количество коржей", "Глазурь", "Декор", "Завершить заказ" };
 
         while (true)
@@ -52,11 +51,10 @@ public class CakeOrder
             Console.Clear();
             Console.WriteLine(" Заказ тортов в Глазурька , торты на ваш выбор");
             Console.WriteLine("Выберите параметр торта");
-            Console.WriteLine("-----------------------");
 
             for (int i = 0; i < options.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -67,70 +65,70 @@ public class CakeOrder
                 Console.WriteLine(options[i]);
             }
             Console.WriteLine();
-            Console.WriteLine("Цена: " + totalPrice);
+            Console.WriteLine("Цена: " + chena);
             Console.Write("Ваш торт: ");
-            Console.WriteLine(selectedCake);
+            Console.WriteLine(vibortortika);
 
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + options.Length) % options.Length;
+                Vibor = (Vibor - 1 + options.Length) % options.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % options.Length;
+                Vibor = (Vibor + 1) % options.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                if (nashChoice == 0)
+                if (Vibor == 0)
                 {
-                    Vipolneniyzakaz();
+                    generationzakaza();
                     break;
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(selectedCake))
+                    if (!string.IsNullOrEmpty(vibortortika))
                     {
-                        selectedCake += "; ";
+                        vibortortika += "; ";
                     }
-                    if (nashChoice == 6)
+                    if (Vibor == 6)
                     {
-                        selectedCake += ChooseCakeForm(out double formPrice);
-                        totalPrice += formPrice;
+                        vibortortika += ChooseCakeForm(out double formPrice);
+                        chena += formPrice;
                     }
-                    else if (nashChoice == 1)
+                    else if (Vibor == 1)
                     {
-                        selectedCake += ChooseCakeSize(out double sizePrice);
-                        totalPrice += sizePrice;
+                        vibortortika += ChooseCakeSize(out double sizePrice);
+                        chena += sizePrice;
                     }
-                    else if (nashChoice == 2)
+                    else if (Vibor == 2)
                     {
-                        selectedCake += ChooseCakeTaste(out double tastePrice);
-                        totalPrice += tastePrice;
+                        vibortortika += ChooseCakeTaste(out double tastePrice);
+                        chena += tastePrice;
                     }
-                    else if (nashChoice == 3)
+                    else if (Vibor == 3)
                     {
-                        selectedCake += ChooseCakeQuantity(out double quantityPrice);
-                        totalPrice += quantityPrice;
+                        vibortortika += ChooseCakeQuantity(out double quantityPrice);
+                        chena += quantityPrice;
                     }
-                    else if (nashChoice == 4)
+                    else if (Vibor == 4)
                     {
-                        selectedCake += ChooseCakeGlaze(out double glazePrice);
-                        totalPrice += glazePrice;
+                        vibortortika += ChooseCakeGlaze(out double glazePrice);
+                        chena += glazePrice;
                     }
-                    else if (nashChoice == 5)
+                    else if (Vibor == 5)
                     {
-                        selectedCake += ChooseCakeDecor(out double decorPrice);
-                        totalPrice += decorPrice;
+                        vibortortika += ChooseCakeDecor(out double decorPrice);
+                        chena += decorPrice;
                     }
                 }
 
-               
-}
+
+            }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
-                nashChoice = 0;
+                Vibor = 0;
             }
         }
     }
@@ -139,7 +137,7 @@ public class CakeOrder
         string[] formOptions = { "Круг", "Квадрат", "Прямоугольник", "Сердечко" };
         double[] formPrices = { 500, 500, 500, 700 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
@@ -150,7 +148,7 @@ public class CakeOrder
 
             for (int i = 0; i < formOptions.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -165,16 +163,16 @@ public class CakeOrder
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + formOptions.Length) % formOptions.Length;
+                Vibor = (Vibor - 1 + formOptions.Length) % formOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % formOptions.Length;
+                Vibor = (Vibor + 1) % formOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                formPrice = formPrices[nashChoice];
-                return formOptions[nashChoice];
+                formPrice = formPrices[Vibor];
+                return formOptions[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -188,7 +186,7 @@ public class CakeOrder
         string[] sizeOptions = { "Маленький (Диаметр - 16 см, 8 порций)", "Обычный (Диаметр - 18 см, 10 порций)", "Большой (Диаметр - 28 см, 24 порции)" };
         double[] sizePrices = { 1000, 1200, 2000 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
@@ -199,7 +197,7 @@ public class CakeOrder
 
             for (int i = 0; i < sizeOptions.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -214,16 +212,16 @@ public class CakeOrder
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + sizeOptions.Length) % sizeOptions.Length;
+                Vibor = (Vibor - 1 + sizeOptions.Length) % sizeOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % sizeOptions.Length;
+                Vibor = (Vibor + 1) % sizeOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                sizePrice = sizePrices[nashChoice];
-                return sizeOptions[nashChoice];
+                sizePrice = sizePrices[Vibor];
+                return sizeOptions[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -237,7 +235,7 @@ public class CakeOrder
         string[] tasteOptions = { "Ванильный", "Шоколадный", "Карамельный", "Ягодный", "Кокосовый" };
         double[] tastePrices = { 100, 100, 150, 200, 250 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
@@ -246,9 +244,9 @@ public class CakeOrder
             Console.WriteLine("Выберите вкус коржей:");
             Console.WriteLine("-----------------------");
 
-for (int i = 0; i < tasteOptions.Length; i++)
+            for (int i = 0; i < tasteOptions.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -263,16 +261,16 @@ for (int i = 0; i < tasteOptions.Length; i++)
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + tasteOptions.Length) % tasteOptions.Length;
+                Vibor = (Vibor - 1 + tasteOptions.Length) % tasteOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % tasteOptions.Length;
+                Vibor = (Vibor + 1) % tasteOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                tastePrice = tastePrices[nashChoice];
-                return tasteOptions[nashChoice];
+                tastePrice = tastePrices[Vibor];
+                return tasteOptions[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -286,18 +284,17 @@ for (int i = 0; i < tasteOptions.Length; i++)
         string[] quantityOptions = { "1 корж", "2 коржа", "3 коржа", "4 коржа" };
         double[] quantityPrices = { 200, 400, 600, 800 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine("Для выхода нажмите Escape");
             Console.WriteLine("Выберите количество коржей:");
-            Console.WriteLine("-----------------------");
-
+           
             for (int i = 0; i < quantityOptions.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -312,16 +309,16 @@ for (int i = 0; i < tasteOptions.Length; i++)
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + quantityOptions.Length) % quantityOptions.Length;
+                Vibor = (Vibor - 1 + quantityOptions.Length) % quantityOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % quantityOptions.Length;
+                Vibor = (Vibor + 1) % quantityOptions.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                quantityPrice = quantityPrices[nashChoice];
-                return quantityOptions[nashChoice];
+                quantityPrice = quantityPrices[Vibor];
+                return quantityOptions[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -332,21 +329,20 @@ for (int i = 0; i < tasteOptions.Length; i++)
     }
     private string ChooseCakeGlaze(out double glazePrice)
     {
-        string[] glazeOptions = { "Шоколад", "Крем", "Бизе", "Драже", "Ягоды" };
+        string[] glazyr = { "Шоколад", "Крем", "Бизе", "Драже", "Ягоды" };
         double[] glazePrices = { 100, 100, 150, 150, 200 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine("Для выхода нажмите Escape");
             Console.WriteLine("Выберите глазурь:");
-            Console.WriteLine("-----------------------");
 
-            for (int i = 0; i < glazeOptions.Length; i++)
+            for (int i = 0; i < glazyr.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -354,24 +350,24 @@ for (int i = 0; i < tasteOptions.Length; i++)
                 {
                     Console.Write("   ");
                 }
-                Console.WriteLine($"{glazeOptions[i]} - {glazePrices[i]} ");
+                Console.WriteLine($"{glazyr[i]} - {glazePrices[i]} ");
             }
 
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-            
-if (keyInfo.Key == ConsoleKey.UpArrow)
+
+            if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + glazeOptions.Length) % glazeOptions.Length;
+                Vibor = (Vibor - 1 + glazyr.Length) % glazyr.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % glazeOptions.Length;
+                Vibor = (Vibor + 1) % glazyr.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                glazePrice = glazePrices[nashChoice];
-                return glazeOptions[nashChoice];
+                glazePrice = glazePrices[Vibor];
+                return glazyr[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -382,21 +378,20 @@ if (keyInfo.Key == ConsoleKey.UpArrow)
     }
     private string ChooseCakeDecor(out double decorPrice)
     {
-        string[] decorOptions = { "Шоколадная", "Ягодная", "Кремовая" };
+        string[] decor = { "Шоколадная", "Ягодная", "Кремовая" };
         double[] decorPrices = { 150, 150, 150 };
 
-        int nashChoice = 0;
+        int Vibor = 0;
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine("Для выхода нажмите Escape");
             Console.WriteLine("Выберите декор:");
-            Console.WriteLine("-----------------------");
 
-            for (int i = 0; i < decorOptions.Length; i++)
+            for (int i = 0; i < decor.Length; i++)
             {
-                if (i == nashChoice)
+                if (i == Vibor)
                 {
                     Console.Write("-> ");
                 }
@@ -404,23 +399,23 @@ if (keyInfo.Key == ConsoleKey.UpArrow)
                 {
                     Console.Write("   ");
                 }
-                Console.WriteLine($"{decorOptions[i]} - {decorPrices[i]} ");
+                Console.WriteLine($"{decor[i]} - {decorPrices[i]} ");
             }
 
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             if (keyInfo.Key == ConsoleKey.UpArrow)
             {
-                nashChoice = (nashChoice - 1 + decorOptions.Length) % decorOptions.Length;
+                Vibor = (Vibor - 1 + decor.Length) % decor.Length;
             }
             else if (keyInfo.Key == ConsoleKey.DownArrow)
             {
-                nashChoice = (nashChoice + 1) % decorOptions.Length;
+                Vibor = (Vibor + 1) % decor.Length;
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                decorPrice = decorPrices[nashChoice];
-                return decorOptions[nashChoice];
+                decorPrice = decorPrices[Vibor];
+                return decor[Vibor];
             }
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -429,24 +424,24 @@ if (keyInfo.Key == ConsoleKey.UpArrow)
             }
         }
     }
-    private void Vipolneniyzakaz()
+    private void generationzakaza()
     {
-        Console.WriteLine("Заказ завершен. Цена: " + totalPrice);
-        Console.WriteLine("Ваш торт: " + selectedCake);
+        Console.WriteLine("Заказ завершен. Цена: " + chena);
+        Console.WriteLine("Ваш торт: " + vibortortika);
 
-        DateTime nasheTime = DateTime.Now;
-        string orderTime = nasheTime.ToString("dd.MM.yyyy HH:mm:ss");
+        DateTime vremy = DateTime.Now;
+        string vremyzakaza = vremy.ToString("dd.MM.yyyy HH:mm:ss");
 
-        orderInfo = "Время завершения заказа: " + orderTime + Environment.NewLine +
-                    "Из чего сделан торт: " + selectedCake + Environment.NewLine +
-                    "Окончательная цена: " + totalPrice.ToString("C");
+        infazakaz = "Время завершения заказа: " + vremyzakaza + Environment.NewLine +
+                    "Из чего сделан торт: " + vibortortika + Environment.NewLine +
+                    "Окончательная цена: " + chena.ToString("C");
 
         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         string filePath = Path.Combine(desktopPath, "История заказов.txt");
 
         try
         {
-            File.AppendAllText(filePath, orderInfo + Environment.NewLine);
+            File.AppendAllText(filePath, infazakaz + Environment.NewLine);
             Console.WriteLine("Информация о заказе сохранена в файле История заказов.txt на рабочем столе.");
         }
         catch (IOException e)
@@ -458,10 +453,10 @@ if (keyInfo.Key == ConsoleKey.UpArrow)
     {
         while (true)
         {
-            CakeOrder order = new CakeOrder();
+            ZakazTorta order = new ZakazTorta();
             order.PlaceOrder();
 
-            Console.WriteLine("Желаете оформить еще один заказ? (Да/Нет)");
+            Console.WriteLine("Желаете оформить еще один заказ? (Да Нет)");
             string response = Console.ReadLine();
             if (response.ToLower() != "да")
             {
