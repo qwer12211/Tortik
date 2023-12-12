@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 public static class ArrowMenu
 {
     public static int ShowMenu(string[] options)
@@ -49,7 +47,7 @@ public class ZakazTorta
         while (true)
         {
             Console.Clear();
-            Console.WriteLine(" Заказ тортов в Глазурька , торты на ваш выбор");
+            Console.WriteLine(" Заказ тортов в Глазурька, торты на ваш выбор");
             Console.WriteLine("Выберите параметр торта");
 
             for (int i = 0; i < options.Length; i++)
@@ -291,7 +289,7 @@ public class ZakazTorta
             Console.Clear();
             Console.WriteLine("Для выхода нажмите Escape");
             Console.WriteLine("Выберите количество коржей:");
-           
+
             for (int i = 0; i < quantityOptions.Length; i++)
             {
                 if (i == Vibor)
